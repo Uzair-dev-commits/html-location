@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +38,7 @@
         console.log(position);
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
+        var acc=position.coords.accuracy
         if (marker) {
             map.removeLayer(marker);
         }
@@ -44,7 +46,7 @@
             map.removeLayer(circle);
         }
         marker = L.marker([lat,long]).addTo(map);
-        circle=l.L.circle([lat,long],1000).addTo(map);
+        circle=L.circle([lat,long],{radius:acc}).addTo(map);
         var featureGroup = L.featureGroup([marker,circle]).addTo(map);
         map.fitBounds(featureGroup.getBounds());
     }
